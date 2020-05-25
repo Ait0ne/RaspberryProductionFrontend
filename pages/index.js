@@ -48,11 +48,9 @@ const App = (props) =>  {
 export  async function  getStaticProps(ctx)  {
     const resBouqets = await fetch(`${API_URL}/bouquets`)
     const dataBouqets = await resBouqets.json()
-    const resAccessories = await fetch(`${API_URL}/accessories`)
-    const dataAccessories = await resAccessories.json()
     const resCategories = await fetch(`${API_URL}/categories`)
     const dataCategories = await resCategories.json()
-    return {props:{items:[...dataBouqets,...dataAccessories],categories:dataCategories}}
+    return {props:{items:[...dataBouqets], categories:dataCategories}}
 }
 
 export default App;
