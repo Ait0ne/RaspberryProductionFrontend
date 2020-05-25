@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {addItem,removeItem,clearItemFromCart} from '../../src/redux/cart/cart.actions';
-import API_URL from '../../routes';
-import Link from 'next/link'
+import API_URL, {UPLOAD_URL} from '../../routes';
+import Link from 'next/link';
 
 
 const CartItem = ({cartItem, addItem, removeItem, clearItemFromCart}) => {
@@ -9,7 +9,7 @@ const CartItem = ({cartItem, addItem, removeItem, clearItemFromCart}) => {
         <div className='cart-item'>
             <div className='cart-item-image-container'>
                 
-                <img className='cart-item-image' alt='item-image' src={`${API_URL}${cartItem.gallery[0].formats.thumbnail.url}`}/>
+                <img className='cart-item-image' alt='item-image' src={`${UPLOAD_URL}${cartItem.gallery[0].formats.thumbnail.url}`}/>
             </div>
             <div className='cart-item-content'>
                 <Link href='/itemgallery/[item]' as={`/itemgallery/${cartItem.id}`}><span className='cart-item-name'>{cartItem.name}</span></Link>

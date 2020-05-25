@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import Image from '../Image/image.component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
-import API_URL from '../../routes.js';
+import API_URL, {UPLOAD_URL} from '../../routes.js';
 import Link from 'next/link'
 
 
 const Slider = ({images, id}) => {
     let sliderArr = images.map(image => {
-        return <Image alt={image.name} src={`${API_URL}${image.formats.small.url}`}/>
+        return <Image alt={image.name} src={`${UPLOAD_URL}${image.formats.small.url}`}/>
     })
 
     const [x, setX] = useState(0)

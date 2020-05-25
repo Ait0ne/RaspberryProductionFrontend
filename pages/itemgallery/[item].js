@@ -82,14 +82,14 @@ const ItemPage =({item, addMultipleItems}) => {
                                 
                                 alt='product-image' 
                                 className='item-details-main-image-image'
-                                 src={`${API_URL}${item.gallery[currentImage].url}`} />
+                                 src={item.gallery[currentImage].url} />
                             </motion.div>
                             <div className='item-details-thumbnails'>
                                 {item.gallery.slice(0,3).map((image,index) => 
                                     <img key={image.id} 
                                     className='item-details-thumbnails-image' 
                                     alt='image-thumbnail' 
-                                    src={`${API_URL}${image.formats.thumbnail.url}`}
+                                    src={image.formats.thumbnail.url}
                                     onClick={() => setCurrentImage(index)}
                                     />
                                     )}
