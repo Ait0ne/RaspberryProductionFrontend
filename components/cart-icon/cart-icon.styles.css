@@ -1,0 +1,23 @@
+.cart-icon-container {
+    position: relative;
+    margin-right: 10px;
+    color: #6a4162
+}
+
+.cart-icon-text {
+    position:absolute;
+    font-size: 14px;
+    font-weight: 800;
+    right:8px;
+    top:3px;
+
+
+}
+
+.cart-icon {
+    filter: invert(85%) sepia(24%) saturate(187%) hue-rotate(304deg) brightness(92%) contrast(111%);
+}
+
+.cart-icon:hover {
+    filter: invert(100%) sepia(54%) saturate(2%) hue-rotate(293deg) brightness(101%) contrast(101%);
+}

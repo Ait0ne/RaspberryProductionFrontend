@@ -13,7 +13,7 @@ const customStyles = {
         backgroundColor: '#f39db6',
         color:'#fefafa',
         borderRadius:'5px',
-        width:'150px',
+        width:'160px',
         cursor:'pointer',
         textDecoration:'underline',
         zIndex:999,
@@ -58,7 +58,7 @@ const customStyles = {
     control: () => ({
         display:'flex',
         flexDirection: 'row',
-        width: '150px',
+        width: '160px',
         border: 'none',
         backgroundColor:'#f39db6',
         color: '#fefafa',

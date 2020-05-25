@@ -1,0 +1,109 @@
+.chat-container {
+    position:fixed;
+    display: flex;
+    bottom:110px;
+    right:40px;
+    width: 336px;
+    height: 490px;
+    background-color: white;
+    flex-direction: column;
+    border-radius: 10px 10px 0 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow:  3px 3px 6px #bebebe, 
+    -3px -3px 6px #ffffff;
+    padding:0px 10px 0px 10px;
+    z-index: 2000
+}
+
+.chat-container form {
+    display: flex;
+    flex-direction: column;
+    height:20%;
+}
+.chat-title {
+    display:flex;
+    width:100%;
+    height:10%;
+    text-align: center;
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.4);
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+
+}
+
+.messages-container {
+    width:100%;
+    height: 70%;
+    cursor: default;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column-reverse;
+}
+.message-send-button {
+    position:absolute;
+    right: 10px;
+    bottom:60px;
+    border-radius: 15px;
+    background-color: #4285F4;
+    width:30px;
+    height:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    cursor: pointer;
+}
+.message-send-button:hover {
+    transform: scale(1.1);
+
+}
+.message-send-button:focus {
+    outline: none;
+}
+
+.chat-container form .group {
+    display: flex;
+    width:100%;
+    margin:0;
+    height:100%
+}
+.message-box {
+    width: 100%;
+    border:none;
+    border-top: 0.5px solid rgba(161, 158, 158, 0.4);
+    padding-top: 10px;
+
+    font-family: 'Lora', serif;
+}
+.message-box textarea:focus {
+    outline:none;
+}
+.message-send-button-icon {
+    color: white
+}
+
+.chat-message {
+    max-width:80%;
+
+    max-height:60%;
+    border-radius: 5px;
+    margin:5px 5px 5px 5px;
+    padding:7px 15px 7px 15px;
+    text-align: center;
+    overflow-wrap: break-word;
+
+    
+}
+.message-user {
+    align-self:flex-end;
+    background-color: #4285F4;
+    color: white
+}
+
+.message-support {
+    align-self: flex-start;
+    background-color: rgba(190, 190, 190, 0.8);
+    color: #181818
+}

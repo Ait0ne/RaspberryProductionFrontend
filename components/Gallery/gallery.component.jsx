@@ -1,75 +1,74 @@
 import React from 'react';
 import Card from '../Card/card.component';
-import API_URL from '../../../routes';
 import Pagination from 'react-js-pagination';
 import Select from 'react-select';
-import customStyles from './gallery.styles'
+import customStyles from './gallery.styles';
+import {connect} from 'react-redux';
+import {setCurrentPage} from '../../src/redux/pagination/pagination.action';
+import {setCurrentFilter} from '../../src/redux/filter/filter.action';
+import {setCurrentSort} from '../../src/redux/sort/sort.action';
+import {motion} from 'framer-motion';
+
+const mapStateToProps = state => ({
+    currentFilter: state.filter.currentFilter,
+    sorted: state.sort.sorted,
+    activePage: state.pagination.activePage,
+    perPage: state.pagination.perPage,
+    pageRange: state.pagination.pageRange
+})
+
+const mapDispatchToProps = dispatch => ({
+    handlePageChange: pageNumber => dispatch(setCurrentPage(pageNumber)),
+    onSortChange: selectedOption => {
+            dispatch(setCurrentSort(selectedOption.value));
+            dispatch(setCurrentPage(1));
+        },
+    onSelectChange: selectedOption => {
+        if (selectedOption.value==='All'){
+            return dispatch(setCurrentFilter(''))
+        } else{
+        dispatch(setCurrentFilter(selectedOption.value));
+        dispatch(setCurrentPage(1));
+        }
+    },
+})
+
 
 class Gallery extends React.Component {
 
-    constructor(props){
-        super(props)
-        this.state = {
-            //main state
-            items:[],
-            categories:[],
-            //filters
-            currentFilter:'',
-            sorted: 'Newest',
-            //pagination
-            activePage:1,
-            perPage:5,
-            pageRange:3
 
-        }
-    }
-
-
-    componentDidMount() {
-        fetch(`${API_URL}/bouquets`)
-        .then(res => res.json())
-        .then(data => this.setState({items:[...this.state.items,...data]}))
-        fetch(`${API_URL}/accessories`)
-        .then(res => res.json())
-        .then(data => this.setState({items:[...this.state.items,...data]}))
-        fetch(`${API_URL}/categories`)
-        .then(res => res.json())
-        .then(data => this.setState({categories:data}))
-    }
-
-    // onSelectChange = (event) => {
-    //     if (event.target.value==='All'){
-    //         this.setState({currentFilter:''});
-    //     } else{
-    //     this.setState({currentFilter:event.target.value});
-    //     }
-    // }
     onSelectChange =(selectedOption) => {
         if (selectedOption.value==='All'){
-            this.setState({currentFilter:''});
+            setCurrentFilter('');
         } else{
-        this.setState({currentFilter:selectedOption.value});
+        setCurrentFilter(selectedOption.value);
+        setCurrentPage(1);
         }
     }
 
-    onSortChange = (selectedOption) => {
-        this.setState({sorted:selectedOption.value});
-    }
 
-    handlePageChange(pageNumber) {
-        this.setState({activePage: pageNumber});
-    }
 
     render() {
-        let filteredItems = this.state.items.filter(item => {
-            return item.categories[0].name.includes(this.state.currentFilter)
+        const stagger = {
+            animate: {
+                transition: {
+                    staggerChildren: 0.09
+                }
+            }
+        }
+
+
+
+        const {currentFilter, sorted, activePage, perPage, pageRange, onSortChange, handlePageChange,onSelectChange} = this.props
+        let filteredItems = this.props.props.items.filter(item => {
+            return item.categories[0].name.includes(currentFilter)
         })
         
-        if (this.state.sorted==='Lower Price') {
+        if (sorted==='Lower Price') {
             (filteredItems.sort((a,b) => a.price - b.price))
-        }else if (this.state.sorted==='Higher Price'){
+        }else if (sorted==='Higher Price'){
             (filteredItems.sort((a,b) => b.price - a.price))
-        }else if(this.state.sorted==='Newest') {
+        }else if(sorted==='Newest') {
             filteredItems.sort((a,b) => {
                 return new Date(b.date) -new Date(a.date)
             })
@@ -77,60 +76,70 @@ class Gallery extends React.Component {
 
         
         const     filterOptions =  [{value:'All', label:'All'}]
-        this.state.categories.map(category => {
+        this.props.props.categories.map(category => {
             filterOptions.push({value:category.name, label:category.name})
         })
 
         const sortOptions = [
             {value:'Lower Price', label: 'Lower Price'},
-            {value:'Higher Price', label: 'Higher Price'},
+            {value:'Higher Price', label:'Higher Price'},
             {value:'Newest', label: 'Newest'}
         ]
 
 
         return(
-
-            <div className='gallery-container'>
+            <motion.div className='gallery-container'
+            
+            >
                 <div className='filters'>
+                    <div className='filter-selects'>
                     {   
-                        (this.state.categories[0]) ? 
-                            <Select styles={customStyles} options={filterOptions} onChange={this.onSelectChange} placeholder='Category' isSearchable={false}/>
+                        (this.props.props.categories[0]) ? 
+                            <Select styles={customStyles} options={filterOptions} onChange={onSelectChange} placeholder='Category' isSearchable={false}/>
                         : (
                             <option>Loading</option>
                         )
                     }
-                    <Select styles={customStyles} options={sortOptions} onChange={this.onSortChange} placeholder='Sort' isSearchable={false}/>
-                </div>
-                {
-                    !this.state.items[0] ?
-                        <h1>Loading</h1>
-                    :(
-                        <div className='gallery'>
-                            {
-                            filteredItems.slice((this.state.activePage-1)*this.state.perPage,this.state.activePage*this.state.perPage).map(({id, name, ...otherProps }) =>{
-                                    return <Card key={name} name={name} {...otherProps}/>
-                            })}
-                        </div>
-                    )
-                    
-                }
-                <div>
+                    <Select styles={customStyles} options={sortOptions} onChange={onSortChange} placeholder='Sort' isSearchable={false}/>
+                    </div>
+                    <span className='filters-range'>
+                        <span className='filter-range-number'>{(activePage-1)*perPage+1}</span>-
+                        <span className='filter-range-number'>{activePage*perPage>filteredItems.length ? filteredItems.length : activePage*perPage}</span> out of 
+                        <span className='filter-range-number'>{filteredItems.length}</span> results
+                    </span>
                     {
-                        (filteredItems.length>this.state.perPage) ?
+                        (filteredItems.length>perPage) ?
                             <Pagination 
-                                activePage={this.state.activePage}
-                                itemsCountPerPage={this.state.perPage}
+                                activePage={activePage}
+                                itemsCountPerPage={perPage}
                                 totalItemsCount={filteredItems.length}
-                                pageRangeDisplayed={this.pageRange}
-                                onChange={this.handlePageChange.bind(this)}
+                                pageRangeDisplayed={pageRange}
+                                onChange={handlePageChange.bind(this)}
                             />
                         : ('')
                     }
+                
                 </div>
-            </div>
+                {
+                    !this.props.props.items[0] ?
+                        <h1>Loading</h1>
+                    :(
+                        <motion.div className='gallery' 
+                        variants={stagger}
+                        >
+                            {
+                            filteredItems.slice((activePage-1)*perPage,activePage*perPage).map((item, index) =>{
+                                    // return <Link href='itemgallery/[item]' as='itemgallery' passHref><Card key={id} id={id} name={name} {...otherProps}/></Link>
+                                    return <Card key={item.id} item={item} index={index}  />
+                            })}
+                        </motion.div>
+                    )                    
+                }
+
+            </motion.div>
         )
     }
 }
 
 
-export default Gallery;
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
