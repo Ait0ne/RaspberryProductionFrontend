@@ -98,14 +98,15 @@ class SignUp extends React.Component {
                     <div className='buttons'>
                         <button className='signin-button' type='submit'>SIGN UP</button>
                     </div>
-                </form>
-                {deviceWidth<769?
-                        <div style={{marginTop:20, marginBottom:10}}>
+                    {deviceWidth<769?
+                        <div style={{marginTop:20, marginBottom:10, display:'flex', flexDirection:'column', width:'100%'}}>
                             <span style={{color:'black'}}>Already have an account?</span>
                             <span onClick={()=>translate(0)} style={{textDecoration: 'underline', fontWeight:'bold', color:'#d46a92', cursor:'pointer'}}>SIGN IN</span>
                         </div>
                         :null
                 }
+                
+                </form>
 
             </div>
         )
