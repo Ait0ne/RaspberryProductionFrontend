@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    right: 40px;
+
     z-index: 9999;
     align-items: center;
     background-color: white;
@@ -19,6 +19,9 @@
     
 
 }
+
+
+
 .empty-message {
     color:#d46a92;
     font-size: 18px;
@@ -69,4 +72,18 @@ transform: translate(2px,3px);
 .cart-dropdown-total {
   width:100%;
   margin-bottom: 3px;
+}
+
+@media (max-width:768px) {
+  .cart-dropdown {
+    width:100%;
+    right: 0px;
+    padding-right: 0%;
+  
+
+  }
+  .checkout-button {
+    margin-top:0
+  }
+
 }

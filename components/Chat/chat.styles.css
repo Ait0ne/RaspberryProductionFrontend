@@ -107,3 +107,46 @@
     background-color: rgba(190, 190, 190, 0.8);
     color: #181818
 }
+
+@media (max-width: 768px) {
+    .chat-container {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        border-radius: 0;
+    }
+    .messages-container {
+        width:90%;
+        align-self: flex-end;
+    }
+    .message-box {
+        width:90%;
+        float: right;
+    }
+    .message-box textarea {
+        width:90%;
+        float: right;
+    }
+    .chat-container form .group {
+        justify-content: flex-end;
+    }
+
+    .message-send-button {
+        bottom:100px;
+    }
+
+    .close-chat-small-device {
+        position: absolute;
+        top:10px;
+        right:20px;
+        font-size: 24px;
+        color: #181818
+    }
+    .close-chat-small-device:hover {
+        transform: scale(1.1);
+        color: black;
+        cursor: pointer;
+    }
+}

@@ -75,7 +75,7 @@ class Gallery extends React.Component {
         }
 
         
-        const     filterOptions =  [{value:'All', label:'All'}]
+        const filterOptions =  [{value:'All', label:'All'}]
         this.props.props.categories.map(category => {
             filterOptions.push({value:category.name, label:category.name})
         })
@@ -88,9 +88,7 @@ class Gallery extends React.Component {
 
 
         return(
-            <motion.div className='gallery-container'
-            
-            >
+            <motion.div className='gallery-container' >
                 <div className='filters'>
                     <div className='filter-selects'>
                     {   
@@ -102,10 +100,11 @@ class Gallery extends React.Component {
                     }
                     <Select styles={customStyles} options={sortOptions} onChange={onSortChange} placeholder='Sort' isSearchable={false}/>
                     </div>
+                    <div className='gallery-pagination'>
                     <span className='filters-range'>
                         <span className='filter-range-number'>{(activePage-1)*perPage+1}</span>-
-                        <span className='filter-range-number'>{activePage*perPage>filteredItems.length ? filteredItems.length : activePage*perPage}</span> out of 
-                        <span className='filter-range-number'>{filteredItems.length}</span> results
+                        <span className='filter-range-number'>{activePage*perPage>filteredItems.length ? filteredItems.length : activePage*perPage}</span> <span>out of </span>  
+                        <span className='filter-range-number'>{filteredItems.length}</span>  <span>results</span>
                     </span>
                     {
                         (filteredItems.length>perPage) ?
@@ -118,6 +117,7 @@ class Gallery extends React.Component {
                             />
                         : ('')
                     }
+                    </div>
                 
                 </div>
                 {

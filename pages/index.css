@@ -104,7 +104,7 @@ li.active a{
 
 
 .filters {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -248,3 +248,21 @@ li.active a{
 }
 
 
+@media (max-width:768px) {
+    .filters {
+        flex-direction: column;
+    }
+    .gallery-pagination {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width:992px) {
+    .gallery-container {
+        width:100%
+    }
+    .gallery-pagination {
+        margin-right: 20px;
+    }
+
+}

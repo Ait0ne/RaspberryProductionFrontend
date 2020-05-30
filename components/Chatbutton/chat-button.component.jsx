@@ -1,5 +1,5 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faComments} from '@fortawesome/free-solid-svg-icons';
+import {faComments, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {setNewMessages, toggleChatHidden} from '../../src/redux/chat/chat.actions'
 import {connect} from 'react-redux';
 
@@ -14,7 +14,7 @@ const ChatButton = ({newMessages, setNewMessages, toggleChatHidden,chatHidden}) 
             {   newMessages && chatHidden ?
                 <div className='new-messages'></div>
             : null }
-            <FontAwesomeIcon className='chat-button-icon' icon={faComments} size='2x'/>
+            <FontAwesomeIcon className='chat-button-icon' icon={chatHidden?faComments:faTimes} size='2x'/>
         </div>
     )
 }

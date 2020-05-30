@@ -18,7 +18,9 @@ class  Chat extends React.Component {
         super()
         this.state = {
             text:'',
+            deviceWidth: 0,
         }
+        this.updateDeviceWidth= this.updateDeviceWidth.bind(this);
     }
 
     unsubscribe = (channel) => {
@@ -52,21 +54,24 @@ class  Chat extends React.Component {
     }
     listener = async event => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
-          console.log("Enter key was pressed. Run your function.");
           const userRef = await sendMessage(this.state.text, this.props.channel);
           this.setState({text:''})
         }
       };
+
     componentDidMount() {
         const {channel} = this.props
         this.unsubscribe(channel)
+        document.addEventListener("keydown", this.listener);
+        this.updateDeviceWidth();
+        window.addEventListener('resize', this.updateDeviceWidth)
 
-          document.addEventListener("keydown", this.listener);
     }
 
 
     componentWillUnmount() {
         document.removeEventListener("keydown", this.listener);
+        window.removeEventListener('resize', this.updateDeviceWidth)
     }
 
     handleSubmit = async event => {
@@ -77,13 +82,16 @@ class  Chat extends React.Component {
 
 
     handleChange = event => {
-
-
             this.setState({text:event.target.value})
-
     }
+
+    updateDeviceWidth() {
+        this.setState({deviceWidth:window.innerWidth})
+    }
+
     render () {
         const {messages,channel, toggleChatHidden, setNewMessages} = this.props
+        const {deviceWidth} = this.state
         return (
             <motion.div initial='initial' animate='animate'>
             <ClickOutside onClick={() => {
@@ -92,13 +100,22 @@ class  Chat extends React.Component {
                 }}>
                 <motion.div 
                 initial={{width:'0px', opacity:0}}
-                animate={{width:'336px',opacity:1, transition:{duration:0.3, staggerChildren: 0.09}}}
+                animate={{width:`${deviceWidth>768 ? '336px': `${deviceWidth}px`}`,opacity:1,  transition:{duration:0.3, staggerChildren: 0.09}}}
                 
                 className='chat-container'
                 
                 >
                     <div className='chat-title'>
                         <p>Company Name</p>
+                        {deviceWidth<769?
+                        <div className='close-chat-small-device' onClick={()=> 
+                            {
+                            toggleChatHidden();
+                            setNewMessages(false);
+                            }
+                        }>&#10005;</div>
+                        : null    
+                        }
                     </div>
                     <div className='messages-container' >
                     {   messages ?

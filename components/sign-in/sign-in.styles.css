@@ -134,3 +134,8 @@ transform: translate(2px,3px);
     height:40px;
     cursor:pointer;
 }
+
+.buttons-left {
+    display: flex;
+    flex-direction: row;
+}

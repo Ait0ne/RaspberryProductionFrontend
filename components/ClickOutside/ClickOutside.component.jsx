@@ -4,7 +4,6 @@ const ClickOutside = ({ children, onClick, ref }) => {
   const refs = React.Children.map(children, () => useRef());
   const handleClick = e => {
     const isOutside = refs.every(ref => {
-        console.log(ref.current, e.target)
       return !ref.current.contains(e.target);
 
     });
@@ -16,7 +15,6 @@ const ClickOutside = ({ children, onClick, ref }) => {
 
   useEffect(() => {
     document.addEventListener("click", handleClick);
-
     return () => {
       document.removeEventListener("click", handleClick);
     };

@@ -9,7 +9,9 @@
 .form-container span {
     color: grey
 }
-
+.auth-small-device-container {
+    display: flex
+}
 
 .sign-in-sign-up-form {
     display: flex;
@@ -21,4 +23,32 @@
     box-shadow:  3px 3px 6px #bebebe, 
     -3px -3px 6px #ffffff;
 
+}
+
+@media (max-width:768px) {
+    .sign-in-sign-up-form {
+        overflow:hidden;
+        width:60%;
+        position: relative;
+        padding:10px
+    }
+    .auth-small-device-container{
+        width:200%;
+        flex-shrink: 0;
+        transition: 0.5s;
+    }
+    .sign-in {
+        width:50%;
+        padding-right: 0;
+    }
+    .sign-in form .group input {
+        margin-left:5px
+    } 
+    .sign-in form .group label {
+        margin-left:5px
+    } 
+    .sign-up {
+        width:50%;
+        padding-left: 0;      
+    }
 }

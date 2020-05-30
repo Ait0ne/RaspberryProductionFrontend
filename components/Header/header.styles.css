@@ -52,7 +52,7 @@
 }
 
 .navigation-hidden {
-    display:none;
+    display: flex;
     position:fixed;
     top:60px;
     width:100%;
@@ -71,7 +71,7 @@
 .menu-hidden {
     display: flex;
     flex-direction: column;
-    margin-right: 25%;
+    margin-right: 10%;
 }
 
 .menu-hidden span {

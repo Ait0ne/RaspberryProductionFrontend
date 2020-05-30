@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
@@ -8,16 +8,18 @@ import {auth} from '../../firebase/firebase.utils';
 import { setCurrentUser } from '../../src/redux/user/user.action';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import {motion} from 'framer-motion';
-
+import ClickOutside from '../ClickOutside/ClickOutside.component'
 
 
 const Header = ({currentUser, setCurrentUser, cartHidden }) => {
     const [hidden, setHidden] = useState(true)
+
+
     const handleSignOut = () => {
         auth.signOut()
         setCurrentUser(null)
     }
-    
+  
 
     return (
 
@@ -49,20 +51,23 @@ const Header = ({currentUser, setCurrentUser, cartHidden }) => {
 
                 </div>
             </div>
-            <div className={`${!hidden ? 'nav-show' : '' } navigation-hidden`}>
-                <div className='menu-hidden'>
-                    
-                    <Link  href='/'>
-                        <span className='button-hidden' onClick={() =>setHidden(!hidden)}>SHOP</span>
-                    </Link>
-                    { currentUser ?
-                        <span className='button-hidden' onClick={() =>auth.signOut()}>SIGN OUT</span>
-                    :<Link  href='/auth' >
-                        <span className='button-hidden' onClick={() =>setHidden(!hidden)}>SIGN IN</span>
-                    </Link>}
+            {!hidden ?
+            <ClickOutside onClick={() =>setHidden(!hidden)}>
+                <div className='navigation-hidden'>                
+                    <div className='menu-hidden'>   
+                        <Link  href='/'>
+                            <span className='button-hidden' onClick={() =>setHidden(!hidden)}>SHOP</span>
+                        </Link>
+                        { currentUser ?
+                            <span className='button-hidden' onClick={handleSignOut}>SIGN OUT</span>
+                        :<Link  href='/auth' >
+                            <span className='button-hidden' onClick={() =>setHidden(!hidden)}>SIGN IN</span>
+                        </Link>}
+                    </div>         
                 </div>
-            </div>
-            { cartHidden ? null : <CartDropdown />  }
+            </ClickOutside>   
+            :null}
+            { cartHidden ? null : <CartDropdown/>  }
             </motion.div>
 
         </Fragment>

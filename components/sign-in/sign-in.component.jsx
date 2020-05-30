@@ -35,6 +35,8 @@ class  SignIn extends React.Component{
     }
     
     render() {
+        const {translate, deviceWidth} = this.props
+
         return (
             <motion.div className='sign-in'
             variants={this.props.variants}
@@ -70,6 +72,13 @@ class  SignIn extends React.Component{
 
                         <img className='google' src='/google.png' alt='google-icon' onClick={signInwithGoogle}/>
                         <img className='facebook' src='/facebook.png' alt='facebook-icon' onClick={signInWithFacebook}/>
+                        {deviceWidth<769?
+                        <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
+                            <span style={{color:'black'}}>Don't have an account yet?</span>
+                            <span onClick={()=>translate(-50)} style={{textDecoration: 'underline', fontWeight:'bold', color:'#d46a92', cursor:'pointer'}}>SIGN UP</span>
+                        </div>
+                        :null
+                        }
                     </div>
 
                 </form>

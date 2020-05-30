@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Router from 'next/router';
 import {connect} from 'react-redux';
 import {toggleCartHidden}  from '../../src/redux/cart/cart.actions';
@@ -8,18 +8,31 @@ import ClickOutside from '../ClickOutside/ClickOutside.component'
 import {motion} from 'framer-motion';
 
 const CartDropdown = ({cartItems,toggleCartHidden, total}) => {
-    
-    
+    const [deviceWidth, setDeviceWidth] = useState(0)
+    const [deviceHeight, setDeviceHeight] = useState(0)
 
+    useEffect(()=>{
+        updateDeviceDimensions()
+        window.addEventListener('resize', updateDeviceDimensions)
+        return window.removeEventListener('resize', updateDeviceDimensions)
+    })
 
+    const updateDeviceDimensions = () => {
+        setDeviceWidth(window.innerWidth);
+        setDeviceHeight(window.innerHeight);
+    }
     return (
+
         <motion.div initial='initial' animate='animate'>
+            {console.log(deviceWidth, deviceHeight)}
         <ClickOutside onClick={()=> toggleCartHidden()}>
             <motion.div className='cart-dropdown'
                 initial={{height:'0px'}}
                 animate={{height:'340px', transition:{duration: 0.3}}}
-            >
-                <ScrollBar  style={{height:'280px', width: '240px'}}>
+                
+            >   
+
+                <ScrollBar  style={{height:'280px', width: `100%`}}>
                     <div className='cart-items' >
                         {   cartItems.length ?
                             cartItems.map(cartItem => <CartItem key={cartItem.id} cartItem={cartItem}/>)

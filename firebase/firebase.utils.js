@@ -57,13 +57,22 @@ export const Fire = () => {
 } 
 
 export const sendMessage = async (message, channel) => {
-    const userRef = firestore.collection('Chat').doc(`${channel}`).collection(`messages`).doc(`${new Date()}`)
-    await userRef.set({
+
+
+    const channelRef = firestore.collection('Chat').doc(`${channel}`)
+    const snapshot = await channelRef.get();
+
+    if (!snapshot.exists) {
+        await channelRef.set({name:channel})
+    }
+    const chatRef = firestore.collection('Chat').doc(`${channel}`).collection(`messages`).doc(`${new Date()}`)
+    await chatRef.set({
         id:new Date(),
         text:message,
         createdAt: new Date().getTime(),
         user: {id:channel}
     })
+
 };
 
 

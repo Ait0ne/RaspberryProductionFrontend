@@ -30,6 +30,7 @@
     "react-reveal": "^1.2.2",
     "react-scrollbars-custom": "^4.0.22",
     "react-select": "^3.1.0",
+    "react-swipeable": "^5.5.1",
     "react-web-gifted-chat": "^0.6.7",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",

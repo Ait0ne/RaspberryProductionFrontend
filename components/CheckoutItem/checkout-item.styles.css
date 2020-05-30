@@ -6,6 +6,8 @@
     padding: 15px 0;
     font-size: 20px;
     align-items: center;
+
+
 }
 
 .checkout-item .image-container {
@@ -21,6 +23,7 @@
   .quantity,
   .price {
     width: 23%;
+
   }
 
   .quantity {
