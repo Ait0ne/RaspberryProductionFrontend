@@ -138,7 +138,7 @@ class  Chat extends React.Component {
                         required
                         />       
 
-                        <button className='message-send-button' type='submit'>
+                        <button className='message-send-button'  type='submit'>
                             <FontAwesomeIcon className='message-send-button-icon' icon={faArrowUp} size='lg'/>
                         </button>
 

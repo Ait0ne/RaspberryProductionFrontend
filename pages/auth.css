@@ -5,6 +5,7 @@
     height:100%;
     color: #d46a92;
     margin-top: 50px;
+    width:100%;
 }
 .form-container span {
     color: grey
@@ -28,7 +29,7 @@
 @media (max-width:768px) {
     .sign-in-sign-up-form {
         overflow:hidden;
-        width:60%;
+        width:90%;
         position: relative;
         padding:10px
     }
