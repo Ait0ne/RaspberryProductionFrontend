@@ -1,0 +1,1 @@
+{"ast":null,"code":"const API_URL = 'http://localhost:1337';\nexport default API_URL;","map":null,"metadata":{},"sourceType":"module"}

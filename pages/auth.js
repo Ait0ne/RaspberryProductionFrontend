@@ -1,6 +1,6 @@
 import SignIn from '../components/sign-in/sign-in.component';
 import SignUp from '../components/sign-up/sign-up.components';
-import Router from 'next/router';
+import Router, {withRouter} from 'next/router';
 import {connect} from 'react-redux';
 import {  motion } from 'framer-motion'
 
@@ -23,6 +23,7 @@ class Auth extends React.Component {
         window.addEventListener('resize', this.updateDeviceWidth)
     }
 
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateDeviceWidth)
     }
@@ -36,10 +37,12 @@ class Auth extends React.Component {
     changeSignInSignUp(amount) {
         this.setState({x:amount})
     }
-
+    onRedirect() {
+        Router.push('/payment')
+    }
     
     render() {
-        const {currentUser}= this.props
+        const {currentUser, router}= this.props
         const {x, deviceWidth} = this.state
         return (
                 
@@ -47,13 +50,12 @@ class Auth extends React.Component {
                 initial='initial'
                 animate='animate'
                 >
-                    {currentUser ?
-                    Router.back()
-                    :null}    
+                    {!currentUser ? null
+                    :(router.query.redirect==='payment'? this.onRedirect():
+                    Router.back())}    
                     <motion.div className='sign-in-sign-up-form'
                     initial={{x:100, opacity:0}}
                     animate={{x:0, opacity:1, transition:{duration: 0.4}}}
-                    
                     >
                         <div className='auth-small-device-container' style={{transform: `translateX(${x}%)`}}>
                             <SignIn translate={this.changeSignInSignUp} deviceWidth={deviceWidth}/>
@@ -70,4 +72,4 @@ const mapStatetoProps = (state) => ({
     currentUser: state.user.currentUser
 })
 
-export default connect(mapStatetoProps)(Auth);
+export default withRouter(connect(mapStatetoProps)(Auth));

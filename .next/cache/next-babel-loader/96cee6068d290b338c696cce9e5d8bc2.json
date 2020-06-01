@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport ChatBody from '../components/ChatBody/chat-body.component';\nimport React, { useState } from 'react';\n\nconst ChatPage = () => {\n  return __jsx(\"div\", {\n    style: {\n      marginTop: '100px'\n    }\n  }, __jsx(ChatBody, null));\n};\n\nexport default ChatPage;","map":null,"metadata":{},"sourceType":"module"}

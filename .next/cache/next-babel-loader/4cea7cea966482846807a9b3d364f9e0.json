@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var setCurrentSort = function setCurrentSort(text) {\n  return {\n    type: 'SET_CURRENT_SORT',\n    payload: text\n  };\n};","map":null,"metadata":{},"sourceType":"module"}

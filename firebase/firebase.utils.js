@@ -66,12 +66,22 @@ export const sendMessage = async (message, channel) => {
         await channelRef.set({name:channel})
     }
     const chatRef = firestore.collection('Chat').doc(`${channel}`).collection(`messages`).doc(`${new Date()}`)
-    await chatRef.set({
-        id:new Date(),
-        text:message,
-        createdAt: new Date().getTime(),
-        user: {id:channel}
-    })
+    try {
+        await channelRef.update({
+            userMessages:true,
+            text:message,
+            time:new Date()
+        })
+        await chatRef.set({
+            id:new Date(),
+            text:message,
+            createdAt: new Date().getTime(),
+            user: {id:channel}
+        })
+    } catch (err) {
+        alert(err.message)
+    }
+
 
 };
 

@@ -36,11 +36,15 @@ const CheckoutPage = ({cartItems, total, currentUser}) => {
             <div className='total'>
                 <span>Total: ${total}</span>
             </div>
-            <button className='payment-button' 
-            onClick={() =>
+            <button className={`${total===0?'payment-button-disabled':''} payment-button`} 
+
+            onClick={total===0?null:() =>
                 !currentUser ?
-                    Router.push('/auth')
-                :null
+                    Router.push({
+                        pathname:'/auth',
+                        query: { redirect: 'payment' }
+                    })
+                :Router.push('/payment')
             }>
                 Proceed To Payment
                 </button>

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const setCurrentPage = page => ({\n  type: 'SET_CURRENT_PAGE',\n  payload: page\n});","map":null,"metadata":{},"sourceType":"module"}

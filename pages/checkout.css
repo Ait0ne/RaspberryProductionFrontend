@@ -31,7 +31,7 @@
 .total {
     margin-top: 30px;
     margin-left: auto;
-    font-size: 36px;
+    font-size: 24px;
   }
 
 
@@ -63,10 +63,31 @@
     
   
 }
+
 .payment-button:active {
-background-color: #fefafa;
-color: #d46a92;
-border: 1px solid #f39db6;
-box-shadow: none;
-transform: translate(2px,3px);
+    background-color: #fefafa;
+    color: #d46a92;
+    border: 1px solid #f39db6;
+    box-shadow: none;
+    transform: translate(2px,3px);
+    }
+
+.payment-button-disabled {
+    background-color: rgb(163, 163, 163);
+    box-shadow:  none;
+    cursor:default
+
 }
+.payment-button-disabled:hover {
+    background-color: rgb(163, 163, 163);
+    border:none;
+    color:white
+}
+.payment-button-disabled:active {
+    background-color: rgb(163, 163, 163);
+    box-shadow:  none;
+    cursor:default;
+    border:none;
+    transform: none;
+    }
+

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var setCurrentPage = function setCurrentPage(page) {\n  return {\n    type: 'SET_CURRENT_PAGE',\n    payload: page\n  };\n};","map":null,"metadata":{},"sourceType":"module"}

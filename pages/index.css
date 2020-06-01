@@ -88,8 +88,8 @@ li.active a{
     border-radius: 8px;
     transition: 1s;
     background: white;
-    box-shadow:  3px 3px 6px #bebebe, 
-    -3px -3px 6px #ffffff;
+    box-shadow:  6px 6px 10px rgb(190, 190, 190, 0.6), 
+    -6px -6px 6px rgb(255, 255, 255, 0.8);
     color: #181918;
     font-weight: 400;
     font-family: 'Lora', serif;

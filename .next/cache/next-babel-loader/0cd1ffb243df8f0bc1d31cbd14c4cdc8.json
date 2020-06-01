@@ -1,0 +1,1 @@
+{"ast":null,"code":"const API_URL = 'https://raspberrynextjsstrapi2.herokuapp.com';\nexport const UPLOAD_URL = '';\nexport default API_URL;","map":null,"metadata":{},"sourceType":"module"}

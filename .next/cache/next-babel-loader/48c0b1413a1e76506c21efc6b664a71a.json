@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var setCurrentFilter = function setCurrentFilter(text) {\n  return {\n    type: 'SET_CURRENT_FILTER',\n    payload: text\n  };\n};","map":null,"metadata":{},"sourceType":"module"}
