@@ -27,6 +27,7 @@ import '../components/CheckoutItem/checkout-item.styles.css';
 import './checkout.css';
 import '../components/Chatbutton/chat-button.styles.css';
 import '../components/Chat/chat.styles.css';
+import './payment.css'
 
 import { AnimatePresence } from 'framer-motion'
 

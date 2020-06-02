@@ -59,4 +59,6 @@
 }
 .cart-item-name {
     cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
 }

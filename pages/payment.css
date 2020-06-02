@@ -1,0 +1,208 @@
+.payment-page-container {
+    display: flex;
+    width:70%;
+    justify-content: center;
+    align-items: center;
+    min-height:80vh ;
+}
+.payment-page-main-content {
+
+
+    min-width:500px;
+    min-height:500px;
+    padding:20px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    
+}
+
+.payment-page-cart-container {
+    min-height: 500px;
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    padding:20px;
+    width:30%;
+    min-width:300px;
+    margin-left:10px
+}
+
+.payment-page-cart-title {
+    font-size: 20px;
+    font-weight: bold;
+    color:#bd3f6f;
+    align-self: center;
+    display: flex;
+    margin-top: 0;
+}
+.payment-page-cart-total {
+    font-size: 16px;
+    font-weight: bold;
+    color:#2c2b2b;
+    align-self: flex-end;
+}
+
+.payment-method-container {
+    width:100%;
+    background-color: white;
+    border-radius: 5px;
+    padding:20px;
+    margin-bottom: 10px;
+    box-shadow:  3px 3px 5px rgb(190, 190, 190, 0.6), 
+    -3px -3px 5px rgb(255, 255, 255, 0.8);
+    font-family: 'Open Sans Condensed';
+    font-weight: 600;
+    font-size: 16px;
+    color:#2c2b2b;
+}
+.payment-method-title {
+    font-size: 20px;
+    font-weight: bold;
+    color:#bd3f6f;
+}
+.payment-method-container form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+
+.delivery-method-container {
+    width:100%;
+    background-color: white;
+    border-radius: 5px;
+    padding:20px;
+    margin-bottom: 10px;
+    box-shadow:  3px 3px 5px rgb(190, 190, 190, 0.6), 
+    -3px -3px 5px rgb(255, 255, 255, 0.8);
+    font-family: 'Open Sans Condensed';
+    font-weight: 600;
+    font-size: 16px;
+    color:#2c2b2b;
+}
+.delivery-method-title {
+    font-size: 20px;
+    font-weight: bold;
+    color:#bd3f6f;
+}
+
+.delivery-address-add-button {
+    background-color: white;
+    color: #c56b84;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 2px 2px;
+    height: 45px;
+    font-weight: 400;
+    border-color: #ccc;
+    border-width: 0em;
+    width:30%;
+    min-width: 120px;
+    box-shadow:  2px 2px 4px rgba(197, 107, 132,0.6), 
+    -3px -3px 6px #ffffff;
+    margin-top: 20px;
+    text-align: center;
+    outline:none;
+    transition: 0.1s;
+    cursor: pointer;
+}
+.delivery-address-add-button:hover {
+    background-color: #fefafa;
+    color: #d46a92;
+    border: 1px solid #f39db6;
+    
+  
+}
+
+.delivery-address-add-button:active {
+    background-color: #fefafa;
+    color: #d46a92;
+    border: 1px solid #f39db6;
+    box-shadow: none;
+    transform: translate(2px,3px);
+    }
+
+.delivery-address-form-container {
+    width:100%;
+    background-color: white;
+    border-radius: 5px;
+    padding:20px;
+    margin-bottom: 10px;
+    box-shadow:  3px 3px 5px rgb(190, 190, 190, 0.6), 
+    -3px -3px 5px rgb(255, 255, 255, 0.8);
+    font-family: 'Open Sans Condensed';
+    font-weight: 600;
+    font-size: 16px;
+    color:#2c2b2b;
+}
+.delivery-address-info{
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+}
+.delivery-address-title {
+    font-size: 16px;
+    font-weight: bold;
+    color:#bd3f6f;
+}
+
+.create-order-button {
+    background-color: #bd3f6f;
+    color: #fefafa;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 2px 4px;
+    height: 45px;
+    font-weight: 700;
+    border-color: #ccc;
+    border-width: 0em;
+    width:30%;
+    min-width:100px;
+    box-shadow:  2px 2px 4px #c56b84, 
+    -3px -3px 6px #ffffff;
+    text-align: center;
+    outline:none;
+    transition: 0.1s;
+    cursor: pointer;
+    align-self: flex-start;
+}
+.create-order-button:hover {
+    background-color: #fefafa;
+    color: #d46a92;
+    border: 1px solid #f39db6;
+    
+  
+}
+
+.create-order-button:active {
+background-color: #fefafa;
+color: #d46a92;
+border: 1px solid #f39db6;
+box-shadow: none;
+transform: translate(2px,3px);
+}
+
+@media (max-width:768px) {
+
+    .payment-page-cart-container{
+        display: none;
+    }
+    .payment-page-main-content{
+        min-width:90%;
+        min-height:90%;
+    }
+    .delivery-address-form .group .form-input {
+        width:90%
+    }
+}
+@media (max-width:992px){
+    .payment-page-main-content {
+
+
+        min-width:300px;
+    }
+}
