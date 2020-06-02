@@ -27,7 +27,8 @@
     padding:20px;
     width:30%;
     min-width:300px;
-    margin-left:10px
+    margin-left:10px;
+    align-items:center;
 }
 
 .payment-page-cart-title {

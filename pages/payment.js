@@ -15,11 +15,11 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
     const [deliveryAddress, setDeliveryAddress] = useState({city:'', address:''})
     const [address, setAddress] = useState('')
     const [hiddenAddressForm, setHiddenAddressForm] = useState(true)
-    // useEffect(()=>{
-    //     if (!currentUser) {
-    //         Router.back()
-    //     }
-    // })
+    useEffect(()=>{
+        if (!currentUser) {
+            Router.back()
+        }
+    })
 
     const onMethodFormChange = (event) => {
         setPayMethod(event.target.value)
@@ -38,8 +38,9 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
     }
     const onCreateOrder = () => {
         const order = `${cartItems.map(cartItem=>`${cartItem.name}: ${cartItem.quantity}\n`)}
-         \nTotal:${total}\n Delivery Method: ${deliveryMethod} \n ${deliveryMethod==='delivery'?`Delivery Address: ${address.city}, ${address.address}`:''}`
-        fetch(`${API_URL}}/orders`,{
+         \nTotal:${total}\nPayment Method: ${payMethod}
+         \n Delivery Method: ${deliveryMethod} \n ${deliveryMethod==='delivery'?`Delivery Address: ${address.city}, ${address.address}`:''}`
+        fetch(`${API_URL}/orders`,{
             method: 'post',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -143,7 +144,7 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
                 
                 {
                     payMethod==='card'&&deliveryMethod==='pickup'&&total>0 || payMethod==='card'&&deliveryMethod==='delivery'&&address!==''&&total>0?
-                    <StripeButton currentUser={currentUser} price={total} cartItems={cartItems} deliveryMethod={deliveryMethod} deliveryAddress={address}/>
+                    <StripeButton currentUser={currentUser} price={total} cartItems={cartItems} paymentMethod={payMethod} deliveryMethod={deliveryMethod} deliveryAddress={address}/>
                     :null
                 }
                 {
@@ -159,8 +160,9 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
                     cartItems.length ?
                     cartItems.map(cartItem => <CartItem key={cartItem.id} cartItem={cartItem}/>)
                     : 
-                    <span className='empty-message'>Your cart is empty</span>
-                
+                    <div style={{display:'flex'}}>
+                        <span className='empty-message' style={{alignSelf:'center', justifySelf:'center'}}>Cart is empty</span>
+                    </div>
                 }
                 </ScrollBar>
                 <div className='payment-page-cart-total'>

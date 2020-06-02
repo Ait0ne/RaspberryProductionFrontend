@@ -5,8 +5,9 @@ import API_URL from '../../routes';
 import {connect} from 'react-redux';
 import {clearCart} from '../../src/redux/cart/cart.actions'
 
-const StripeCheckoutButton = ( { price, currentUser, cartItems, clearCart, deliveryMethod, deliveryAddress } ) => {
-    const order = `${cartItems.map(cartItem=>`${cartItem.name}: ${cartItem.quantity}\n`)} \nTotal:${price} 
+const StripeCheckoutButton = ( { price, currentUser, cartItems, clearCart, deliveryMethod, deliveryAddress, paymentMethod } ) => {
+    const order = `${cartItems.map(cartItem=>`${cartItem.name}: ${cartItem.quantity}\n`)} \nTotal:${price}
+    \nPayment Method: ${paymentMethod} 
     \nDelivery Method: ${deliveryMethod} \n${deliveryMethod==='delivery'?`Delivery Address: ${deliveryAddress.city}, ${deliveryAddress.address}`:''}`
     const onToken = token => {
         fetch(`${API_URL}/orders`,{
