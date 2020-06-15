@@ -88,7 +88,7 @@ export const sendMessage = async (message, channel, token) => {
             "body": `${message}`
         }
     }
-    const response = await fetch(`http://localhost:5000/push`, {
+    const response = await fetch(`https://arcane-plains-82623.herokuapp.com/push`, {
         method: 'post',
         headers: {'Content-type': 'application/json',
         },
