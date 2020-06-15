@@ -3,6 +3,7 @@ import AreaInput from '../AreaInput/area-input.component';
 import {sendMessage} from '../../firebase/firebase.utils';
 import {connect} from 'react-redux'; 
 import {setMessages, setNewMessages, toggleChatHidden} from '../../src/redux/chat/chat.actions';
+import {setToken} from '../../src/redux/user/user.action';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import {motion} from 'framer-motion';
@@ -58,6 +59,7 @@ class  Chat extends React.Component {
           this.setState({text:''})
         }
       };
+    
 
     componentDidMount() {
         const {channel} = this.props
@@ -75,6 +77,7 @@ class  Chat extends React.Component {
     }
 
     handleSubmit = async event => {
+
         event.preventDefault();
         const userRef = await sendMessage(this.state.text, this.props.channel);
         this.setState({text:''})
@@ -92,6 +95,7 @@ class  Chat extends React.Component {
     render () {
         const {messages,channel, toggleChatHidden, setNewMessages} = this.props
         const {deviceWidth} = this.state
+        
         return (
             <motion.div initial='initial' animate='animate'>
             <ClickOutside onClick={() => {
@@ -152,13 +156,13 @@ class  Chat extends React.Component {
 const mapStateToProps = state => ({
     messages: state.chat.messages,
     channel: state.chat.channel,
-    chatHidden: state.chat.chatHidden
+    chatHidden: state.chat.chatHidden,
 })
 
 const mapDispatchToProps = dispatch => ({
     setMessages: messages => dispatch(setMessages(messages)),
     setNewMessages:bool => dispatch(setNewMessages(bool)),
-    toggleChatHidden: () => dispatch(toggleChatHidden())
+    toggleChatHidden: () => dispatch(toggleChatHidden()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

@@ -18,7 +18,7 @@ const startState={
     perPage:10,
     pageRange:3},
     sort:{sorted: 'Newest'},
-    user:{currentUser: null},
+    user:{currentUser: null, token: null},
     chat: {channel: '',
     messages: [], newMessages:false, chatHidden:true},
     

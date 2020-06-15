@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/messaging';
 
 const config = {
     apiKey: "AIzaSyABugTRykVjU3cO3nkANbnArtyZ_TPix1Q",
@@ -56,8 +57,7 @@ export const Fire = () => {
 
 } 
 
-export const sendMessage = async (message, channel) => {
-
+export const sendMessage = async (message, channel, token) => {
 
     const channelRef = firestore.collection('Chat').doc(`${channel}`)
     const snapshot = await channelRef.get();
@@ -81,6 +81,24 @@ export const sendMessage = async (message, channel) => {
     } catch (err) {
         alert(err.message)
     }
+    const pushMessage = {
+        "token" : "",
+        "notification" : {
+            "title": `${channel}`,
+            "body": `${message}`
+        }
+    }
+    const response = await fetch(`http://localhost:5000/push`, {
+        method: 'post',
+        headers: {'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            message: pushMessage
+        })
+            
+        
+    })
+    console.log(response)
 
 
 };
@@ -94,6 +112,7 @@ export const sendMessage = async (message, channel) => {
 
 export const auth = firebase.auth();
 export const firestore =firebase.firestore();
+
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt:'select_account'});

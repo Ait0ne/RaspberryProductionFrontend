@@ -72,12 +72,12 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
                     <p className='payment-method-title'>Choose payment method</p>
                     <form className='payment-method-form' onChange={onMethodFormChange}>
                         <div>
-                        <input type='radio' value='cash' name='payment-method' className='payment-method-radio' id = 'payment-method-cash'/>
-                        <label for='payment-method-cash'>Pay with Cash</label>
+                            <input type='radio' value='cash' name='payment-method' className='payment-method-radio' id = 'payment-method-cash'/>
+                            <label for='payment-method-cash'>Pay with Cash</label>
                         </div>
                         <div>
-                        <input type='radio' value='card' name='payment-method' className='payment-method-radio' id = 'payment-method-card'/>
-                        <label for='payment-method-card'>Pay online using card</label>
+                            <input type='radio' value='card' name='payment-method' className='payment-method-radio' id = 'payment-method-card'/>
+                            <label for='payment-method-card'>Pay online using card</label>
                         </div>
                     </form>
                 </div>
@@ -85,12 +85,12 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
                     <p className='delivery-method-title'>Choose delivery method</p>
                     <form className='delivery-method-form' onChange={onDeliveryFormChange}>
                         <div>
-                        <input type='radio' value='delivery' name='delivery-method' className='delivery-method-radio' id = 'delivery-method-delivery'/>
-                        <label for='delivery-method-delivery'>Delivery</label>
+                            <input type='radio' value='delivery' name='delivery-method' className='delivery-method-radio' id = 'delivery-method-delivery'/>
+                            <label for='delivery-method-delivery'>Delivery</label>
                         </div>
                         <div>
-                        <input type='radio' value='pickup' name='delivery-method' className='delivery-method-radio' id = 'delivery-method-pickup'/>
-                        <label for='delivery-method-pickup'>Pickup</label>
+                            <input type='radio' value='pickup' name='delivery-method' className='delivery-method-radio' id = 'delivery-method-pickup'/>
+                            <label for='delivery-method-pickup'>Pickup</label>
                         </div>
                     </form>
                     {
@@ -107,8 +107,8 @@ const PaymentPage =({currentUser, cartItems, total, clearCart}) => {
                     <div className='delivery-address-info'>
                         <p className='delivery-address-title'>Delivery Address</p>
                         <div style={{display:'flex', flexDirection:'column'}}>
-                        <span>City: {address.city}</span>
-                        <span style={{marginTop:'5px'}}>Address: {address.address}</span>
+                            <span>City: {address.city}</span>
+                            <span style={{marginTop:'5px'}}>Address: {address.address}</span>
                         </div>
                         <button type='button' onClick={()=>setHiddenAddressForm(false)} className='delivery-address-add-button'>Change</button>
                     </div>}

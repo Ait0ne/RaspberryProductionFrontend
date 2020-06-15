@@ -25,36 +25,34 @@ const CartDropdown = ({cartItems,toggleCartHidden, total}) => {
 
         <motion.div initial='initial' animate='animate'>
             {console.log(deviceWidth, deviceHeight)}
-        <ClickOutside onClick={()=> toggleCartHidden()}>
-            <motion.div className='cart-dropdown'
+            <ClickOutside onClick={()=> toggleCartHidden()}>
+                <motion.div className='cart-dropdown'
                 initial={{height:'0px'}}
-                animate={{height:'340px', transition:{duration: 0.3}}}
-                
-            >   
-
-                <ScrollBar  style={{height:'280px', width: `100%`}}>
-                    <div className='cart-items' >
-                        {   cartItems.length ?
-                            cartItems.map(cartItem => <CartItem key={cartItem.id} cartItem={cartItem}/>)
-                            : 
-                            <span className='empty-message'>Your cart is empty</span>
-                        }
-                    </div>
-                </ScrollBar>
+                animate={{height:'340px', transition:{duration: 0.3}}}    
+                >   
+                    <ScrollBar  style={{height:'280px', width: `100%`}}>
+                        <div className='cart-items' >
+                            {   cartItems.length ?
+                                cartItems.map(cartItem => <CartItem key={cartItem.id} cartItem={cartItem}/>)
+                                : 
+                                <span className='empty-message'>Your cart is empty</span>
+                            }
+                        </div>
+                    </ScrollBar>
                     <span className='cart-dropdown-total'>Total: ${total}</span>
-                <button 
-                className='checkout-button' 
-                type='button'
-                onClick={() => {
-                    Router.push('/checkout')
-                    toggleCartHidden()
-                }}
-                >
-                    GO TO CHECKOUT
-                </button> 
+                    <button 
+                    className='checkout-button' 
+                    type='button'
+                    onClick={() => {
+                        Router.push('/checkout')
+                        toggleCartHidden()
+                    }}
+                    >
+                        GO TO CHECKOUT
+                    </button> 
 
-            </motion.div>
-        </ClickOutside>
+                </motion.div>
+            </ClickOutside>
         </motion.div>
     )
 }

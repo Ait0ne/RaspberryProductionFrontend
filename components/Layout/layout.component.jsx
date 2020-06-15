@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Header from '../Header/header.component';
 import Head from 'next/head'
 import {connect} from 'react-redux';
-import {auth, createUserProfileDocument} from '../../firebase/firebase.utils';
+import firebase, {auth, createUserProfileDocument, messaging} from '../../firebase/firebase.utils';
 import { setCurrentUser } from '../../src/redux/user/user.action';
 import {setChannel} from '../../src/redux/chat/chat.actions'
 import ChatBody from '../ChatBody/chat-body.component'
@@ -15,7 +15,7 @@ class Layout extends React.Component  {
 
     componentDidMount() {
         const {setCurrentUser, channel, setChannel} = this.props;
-        
+
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
             if (userAuth) {
                 const userRef = await createUserProfileDocument(userAuth);
